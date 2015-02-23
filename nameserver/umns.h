@@ -1,16 +1,16 @@
-#ifndef VNS_H
-#define VNS_H
+#ifndef UMNS_H
+#define UMNS_H
 #include "NameServerInterface.h"
 #include <string>
 #include <utility>
-#include <vector>
+#include <unordered_map>
 using HostName = std::string;
 using IPAddress = unsigned int;
 
-class VNS: public NameServerInterface {
+class UMNS: public NameServerInterface {
 	
 public:
-	VNS();
+	UMNS();
 	const IPAddress NON_EXISTING_ADDRESS = 0;
 	/*
 	 * Insert a name/address pair. Does not check if the name
@@ -33,7 +33,8 @@ public:
 	 IPAddress lookup(const HostName&) const;
 
 private:
-	std::vector<std::pair<HostName,IPAddress>> addresses;
+	
+	std::unordered_map<HostName,IPAddress> addresses;
 };
 
 #endif

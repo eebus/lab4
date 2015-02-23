@@ -1,5 +1,5 @@
-#ifndef VNS_H
-#define VNS_H
+#ifndef HNS_H
+#define HNS_H
 #include "NameServerInterface.h"
 #include <string>
 #include <utility>
@@ -7,10 +7,10 @@
 using HostName = std::string;
 using IPAddress = unsigned int;
 
-class VNS: public NameServerInterface {
+class HNS: public NameServerInterface {
 	
 public:
-	VNS();
+	HNS(int s);
 	const IPAddress NON_EXISTING_ADDRESS = 0;
 	/*
 	 * Insert a name/address pair. Does not check if the name
@@ -33,7 +33,8 @@ public:
 	 IPAddress lookup(const HostName&) const;
 
 private:
-	std::vector<std::pair<HostName,IPAddress>> addresses;
+	int size;
+	std::vector<<vector<std::pair<HostName,IPAddress>>> addresses;
 };
 
 #endif
