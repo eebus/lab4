@@ -1,1 +1,1 @@
-VNS.o VNS.d : VNS.cc
+VNS.o VNS.d : VNS.cc vns.h

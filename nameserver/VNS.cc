@@ -1,13 +1,11 @@
 
-#include<VNS.h>
+#include "vns.h"
 #include <string>
-#include <pair>
-
- VNS::~VNS(){
-	delete addresses;
- }
+#include <utility>
+#include <algorithm>
+using namespace std;
  VNS::VNS(){
-	addresses();
+	//std::vector<std::pair<HostName,IPAddress>> addresses;
  }
 
 /*
@@ -15,8 +13,8 @@
  * or address already exists.
  */
  void VNS::insert(const HostName& h, const IPAddress& ip){
-	 Pair<HostName,IPAddress> p(h,ip);
-	 adresses.push(p);
+	 pair<HostName,IPAddress> p(h,ip);
+	 addresses.push_back(p);
  }
 
 /*
@@ -24,12 +22,12 @@
  * if the host name existed and the pair was removed, false
  * otherwise.
  */
- bool VNS::remove(const HostName&){
-	  auto r=find_if(adresses.begin(), adresses.end(),[value](Pair<HostName,IPAddress> x) { return x.first == value; });
-	  if(r==adresses.end()){
+ bool VNS::remove(const HostName& h){
+	  auto r=std::find_if(addresses.begin(), addresses.end(),[h](pair<HostName,IPAddress> x) { return x.first == h; });
+	  if(r==addresses.end()){
 			return false;
 	  }else{
-		  adresses.erase(r);
+		  addresses.erase(r);
 		  return true;
 	  }
  }
@@ -39,6 +37,6 @@
  * NON_EXISTING_ADDRESS if the host name wasn't in the name
  * server.
  */
- IPAddress VNS::lookup(const HostName&) const{
-	 
+ IPAddress VNS::lookup(const HostName& h) const{
+	 return 0;
  }

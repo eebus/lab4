@@ -1,16 +1,17 @@
-#ifndef VNS_H
+#ifdef VNS_H
 #define VNS_H
 
 #include <string>
-#include <pair>
+#include <utility>
+#include <vector>
 using HostName = std::string;
 using IPAddress = unsigned int;
-const IPAddress NON_EXISTING_ADDRESS = 0;
+
 class VNS: public NameServerInterface {
+	
 public:
 	VNS();
-	 ~VNS();
-	
+	const IPAddress NON_EXISTING_ADDRESS = 0;
 	/*
 	 * Insert a name/address pair. Does not check if the name
 	 * or address already exists.
@@ -30,7 +31,7 @@ public:
 	 * server.
 	 */
 	 IPAddress lookup(const HostName&) const;
-}
+
 private:
 	std::vector<std::pair<HostName,IPAddress>> addresses;
 };
